@@ -1,0 +1,190 @@
+{
+  "personalInfo": {
+    "name": "Divesh Kumawat",
+    "title": "Cloud & Full-Stack Developer",
+    "email": "kumavatdivesh671@gmail.com",
+    "phone": "+91-7621997058",
+    "location": "Waghodia, Vadodara, Gujarat",
+    "bio": "Cloud and Full-Stack Developer skilled in AWS, serverless architectures, and modern web technologies, with hands-on experience building and deploying scalable AI-powered applications. Experienced in cloud deployment, REST APIs, open-source contribution, and automation with a strong focus on performance, accessibility, and production-ready systems.",
+    "portfolio": "https://d1v3shh.github.io/Portfolio/",
+    "linkedin": "https://www.linkedin.com/in/divesh-kumawat-0874662b9/",
+    "github": "https://github.com/D1v3shh"
+  },
+
+  "skills": {
+    "cloudAndDevOps": [
+      "AWS EC2",
+      "AWS S3",
+      "AWS Lambda",
+      "API Gateway",
+      "DynamoDB",
+      "VPC",
+      "CloudTrail",
+      "CloudWatch",
+      "RDS",
+      "IAM",
+      "Load Balancing",
+      "AWS Bedrock",
+      "Serverless Architecture",
+      "Cloud Deployment",
+      "Vercel",
+      "Linux",
+      "REST APIs"
+    ],
+
+    "programmingAndDevelopment": [
+      "C++",
+      "Java",
+      "C",
+      "SQL",
+      "JavaScript",
+      "Node.js",
+      "Angular",
+      "OOP",
+      "CLI",
+      "Problem Solving",
+      "Debugging"
+    ],
+
+    "toolsAndPlatforms": [
+      "Git",
+      "GitHub",
+      "Linux CLI",
+      "VS Code",
+      "Postman",
+      "Vercel",
+      "Microsoft 365"
+    ],
+
+    "cicdAndWorkflow": [
+      "CodePipeline",
+      "GitHub Workflows",
+      "Pull Requests",
+      "Code Reviews"
+    ],
+
+    "softSkills": [
+      "Communication",
+      "Team Collaboration",
+      "Adaptability"
+    ]
+  },
+
+  "experience": [
+    {
+      "title": "EPL Open Source Contribution",
+      "description": [
+        "Developed and integrated the official EPL cloud package with AWS support for the EPL ecosystem.",
+        "Implemented cloud utilities for AWS S3, Lambda, and SQS integrations.",
+        "Designed a simplified EPL facade layer and added modular boto3 support using eplang[cloud].",
+        "Created 25 unit tests with mocked AWS services to ensure reliability and high test coverage.",
+        "Collaborated using GitHub workflows including feature branching, pull requests, and code reviews."
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "AI-StudyBuddy",
+      "featured": true,
+      "technologies": [
+        "Angular",
+        "Node.js",
+        "Google Gemini API",
+        "Vercel",
+        "JavaScript"
+      ],
+      "description": [
+        "Built and deployed a full-stack AI-powered learning platform using Angular, Node.js, and Google Gemini API for generating personalized study materials from PDF documents.",
+        "Architected and deployed a production-ready two-tier web application on Vercel using custom vercel.json routing and optimized serverless deployment workflows.",
+        "Developed scalable AI pipelines for automated PDF text extraction, summaries, flashcards, and quiz generation based on document complexity.",
+        "Designed a responsive modern UI with glassmorphism effects, accessibility modes, and text-to-speech support for inclusive learning experiences.",
+        "Implemented offline-ready export functionality for flashcards and quizzes to improve accessibility and usability."
+      ],
+      "architecture": "Two-tier web application with Angular frontend and Node.js backend, deployed on Vercel with serverless functions",
+      "githubUrl": "https://github.com/D1v3shh/AI-StudyBuddy",
+      "liveUrl": "https://ai-study-buddy-frontend.vercel.app/"
+    },
+
+    {
+      "title": "Fun-Facts Generator — AWS Serverless Project",
+      "featured": true,
+      "technologies": [
+        "AWS Lambda",
+        "API Gateway",
+        "DynamoDB",
+        "AWS Bedrock",
+        "AWS Amplify"
+      ],
+      "description": [
+        "Created a fully serverless application using AWS Lambda, API Gateway, DynamoDB, Bedrock, and Amplify to generate AI-powered fun facts.",
+        "Built scalable backend APIs and securely managed real-time AI-generated responses using IAM-based access control.",
+        "Hosted and deployed the frontend on AWS Amplify to deliver a cloud-native and responsive user experience."
+      ],
+      "architecture": "Serverless architecture with AWS Lambda functions, API Gateway for routing, DynamoDB for storage, and AWS Bedrock for AI generation",
+      "githubUrl": "https://github.com/D1v3shh/Fun-Facts-Generator",
+      "liveUrl": "https://main.d2x8j9k4l5m3n7.amplifyapp.com/"
+    },
+
+    {
+      "title": "Secure File Sharing App",
+      "featured": false,
+      "technologies": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "JWT",
+        "Multer",
+        "Bcrypt"
+      ],
+      "description": [
+        "Developed a secure file sharing application with user authentication and encrypted file storage.",
+        "Implemented JWT-based authentication system with password hashing using bcrypt for enhanced security.",
+        "Built file upload and download functionality with access control and sharing permissions.",
+        "Created a responsive React frontend with modern UI components and real-time file management.",
+        "Deployed with MongoDB for user and file metadata storage with proper indexing for performance."
+      ],
+      "architecture": "MERN stack application with JWT authentication, file encryption, and role-based access control",
+      "githubUrl": "https://github.com/D1v3shh/Secure-File-Sharing",
+      "liveUrl": "https://secure-file-sharing-demo.vercel.app/"
+    }
+  ],
+
+  "certifications": [
+    {
+      "name": "AWS Academy Cloud Foundations",
+      "issuer": "AWS",
+      "credentialUrl": "https://www.credly.com/badges/63a88fbe-dc56-4a53-9af6-3b838ea97fba/public_url"
+    },
+
+    {
+      "name": "AWS Certified Cloud Practitioner (CLF-C02)",
+      "issuer": "AWS",
+      "credentialUrl": "https://www.credly.com/badges/960a0793-9623-4175-a103-ecae1e8eb435/public_url"
+    }
+  ],
+
+  "education": [
+    {
+      "institution": "Parul University",
+      "degree": "B.Tech in Computer Science Engineering",
+      "duration": "Jul 2023 -- Present",
+      "cgpa": "7.40"
+    },
+
+    {
+      "institution": "Sharadayatan School",
+      "degree": "12th",
+      "duration": "Jul 2021 -- Apr 2023",
+      "percentage": "57%"
+    },
+
+    {
+      "institution": "Sharadayatan School",
+      "degree": "10th",
+      "duration": "Mar 2009 -- May 2021",
+      "percentage": "67%"
+    }
+  ]
+}
