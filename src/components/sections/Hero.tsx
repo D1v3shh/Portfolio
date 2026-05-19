@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { AnimatedBackground } from '../AnimatedBackground';
-import { ScrollReveal } from '../ScrollReveal';
 import { usePortfolio } from '../../hooks';
 import { staggerContainer, staggerItem } from '../../utils/animations';
 import avatarImg from '../../assets/images/Divesh.png';
