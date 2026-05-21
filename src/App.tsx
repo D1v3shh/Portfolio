@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import { Layout } from './components/Layout';
 import { LoadingSpinner, AnimatedBackground, PageTransition } from './components';
 import { Hero, About, Experience, Skills, Projects, Footer } from './components/sections';
@@ -101,6 +102,7 @@ function App() {
           <Footer />
         </motion.div>
       </PageTransition>
+      <Analytics />
     </Layout>
   );
 }
