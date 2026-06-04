@@ -1,0 +1,28 @@
+<section class="hero" id="hero">
+  <!-- Three.js canvas (behind everything) -->
+  <canvas #threeCanvas class="three-canvas"></canvas>
+
+  <!-- Overlay content -->
+  <div class="hero-content" *ngIf="profile">
+    <div class="hero-greeting">
+      <span class="greeting-badge">👋 Hello, I'm</span>
+    </div>
+    <h1 class="hero-name">
+      <span class="name-text">{{ profile.name }}</span>
+    </h1>
+    <p class="hero-title">{{ profile.title }}</p>
+    <p class="hero-tagline">{{ profile.tagline }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">View Projects</a>
+      <a class="btn btn-outline" [href]="profile.resumePdf" target="_blank" rel="noopener">
+        Download Resume
+      </a>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
+    </div>
+  </div>
+</section>

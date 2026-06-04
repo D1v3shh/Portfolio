@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* ══════════════════════════════════════════════
+   CYBERPUNK DESIGN SYSTEM
+   ══════════════════════════════════════════════ */
+
+:root {
+  /* ── Typography ── */
+  --font-primary: 'Share Tech Mono', 'Courier New', monospace;
+
+  /* ── Void / Background ── */
+  --bg-void: #050510;
+  --bg-deep: #08081a;
+  --bg-card: rgba(5, 5, 16, 0.75);
+  --bg-glass: rgba(0, 245, 255, 0.03);
+  --border-glass: rgba(0, 245, 255, 0.1);
+
+  /* ── Neon Palette ── */
+  --neon-cyan: #00f5ff;
+  --neon-magenta: #ff00aa;
+  --neon-yellow: #f0ff00;
+  --neon-purple: #bf00ff;
+  --neon-cyan-dim: rgba(0, 245, 255, 0.5);
+  --neon-magenta-dim: rgba(255, 0, 170, 0.4);
+
+  /* ── Grid ── */
+  --grid-line: rgba(0, 245, 255, 0.08);
+  --grid-size: 60px;
+
+  /* ── Text ── */
+  --text-primary: #e0f7ff;
+  --text-secondary: #7aa8b8;
+  --text-muted: #3d5a66;
+  --text-accent: var(--neon-cyan);
+
+  /* ── Glow Shadows ── */
+  --glow-cyan: 0 0 8px rgba(0, 245, 255, 0.6), 0 0 24px rgba(0, 245, 255, 0.25);
+  --glow-magenta: 0 0 8px rgba(255, 0, 170, 0.6), 0 0 24px rgba(255, 0, 170, 0.25);
+  --glow-text-cyan: 0 0 6px rgba(0, 245, 255, 0.7), 0 0 20px rgba(0, 245, 255, 0.3);
+  --glow-text-magenta: 0 0 6px rgba(255, 0, 170, 0.7), 0 0 20px rgba(255, 0, 170, 0.3);
+
+  /* ── Layout ── */
+  --section-padding: 6rem 2rem;
+  --content-max-width: 1200px;
+
+  /* ── Transitions ── */
+  --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ══════════════════════════════════════════════
+   ANIMATED GRID BACKGROUND
+   Perspective grid that scrolls upward infinitely
+   ══════════════════════════════════════════════ */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    /* Vertical lines */
+    repeating-linear-gradient(
+      90deg,
+      var(--grid-line) 0px,
+      var(--grid-line) 1px,
+      transparent 1px,
+      transparent var(--grid-size)
+    ),
+    /* Horizontal lines */
+    repeating-linear-gradient(
+      0deg,
+      var(--grid-line) 0px,
+      var(--grid-line) 1px,
+      transparent 1px,
+      transparent var(--grid-size)
+    );
+  background-size: var(--grid-size) var(--grid-size);
+  animation: gridScroll 20s linear infinite;
+}
+
+/* Radial fade so grid dissolves at edges */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    transparent 0%,
+    var(--bg-void) 100%
+  );
+}
+
+@keyframes gridScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 var(--grid-size);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SCANLINE OVERLAY
+   CRT-style horizontal scanlines across the viewport
+   ══════════════════════════════════════════════ */
+
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+  animation: scanlineFlicker 8s ease-in-out infinite;
+}
+
+@keyframes scanlineFlicker {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.35; }
+  92%      { opacity: 0.5; }
+  93%      { opacity: 0.7; }
+  94%      { opacity: 0.4; }
+}
+
+/* ══════════════════════════════════════════════
+   UTILITY CLASSES
+   ══════════════════════════════════════════════ */
+
+.container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Neon text helpers */
+.neon-cyan {
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-text-cyan);
+}
+
+.neon-magenta {
+  color: var(--neon-magenta);
+  text-shadow: var(--glow-text-magenta);
+}
+
+/* Neon border glow */
+.neon-border {
+  border: 1px solid var(--neon-cyan);
+  box-shadow: var(--glow-cyan), inset 0 0 12px rgba(0, 245, 255, 0.05);
+}
+
+/* Glassmorphic panel */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: 4px;
+}
+
+/* ══════════════════════════════════════════════
+   SCROLLBAR — Neon styled
+   ══════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0, 245, 255, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-magenta);
+  box-shadow: 0 0 6px rgba(255, 0, 170, 0.4);
+}
+
+/* ══════════════════════════════════════════════
+   SELECTION
+   ══════════════════════════════════════════════ */
+
+::selection {
+  background: rgba(0, 245, 255, 0.25);
+  color: #fff;
+  text-shadow: var(--glow-text-cyan);
+}
