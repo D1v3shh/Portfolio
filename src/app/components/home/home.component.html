@@ -3,18 +3,18 @@
   <canvas #threeCanvas class="three-canvas"></canvas>
 
   <!-- Overlay content -->
-  <div class="hero-content" *ngIf="profile">
+  <div class="hero-content" *ngIf="basics">
     <div class="hero-greeting">
       <span class="greeting-badge">👋 Hello, I'm</span>
     </div>
     <h1 class="hero-name">
-      <span class="name-text">{{ profile.name }}</span>
+      <span class="name-text">{{ basics.name }}</span>
     </h1>
-    <p class="hero-title">{{ profile.title }}</p>
-    <p class="hero-tagline">{{ profile.tagline }}</p>
+    <p class="hero-title">{{ basics.label }}</p>
+    <p class="hero-tagline">{{ basics['x-tagline'] }}</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#projects">View Projects</a>
-      <a class="btn btn-outline" [href]="profile.resumePdf" target="_blank" rel="noopener">
+      <a class="btn btn-outline" [href]="basics['x-resumePdf']" target="_blank" rel="noopener">
         Download Resume
       </a>
     </div>

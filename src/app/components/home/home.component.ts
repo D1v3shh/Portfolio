@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } fr
 import { CommonModule } from '@angular/common';
 import * as THREE from 'three';
 import { ResumeService } from '../../services/resume.service';
-import { Profile } from '../../models/resume.model';
+import { Basics } from '../../models/resume.model';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ import { Profile } from '../../models/resume.model';
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('threeCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  profile: Profile | null = null;
+  basics: Basics | null = null;
 
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private resumeService: ResumeService) {}
 
   ngOnInit(): void {
-    this.resumeService.getProfile().subscribe((profile) => {
-      this.profile = profile;
+    this.resumeService.getBasics().subscribe((basics) => {
+      this.basics = basics;
     });
   }
 

@@ -2,56 +2,92 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, shareReplay } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Resume, Profile, Skill, Project, Experience, Education, ContactInfo } from '../models/resume.model';
+import {
+  ResumeData,
+  Basics,
+  SocialProfile,
+  SkillGroup,
+  ProjectEntry,
+  WorkEntry,
+  EducationEntry,
+  CertificateEntry,
+} from '../models/resume.model';
 
+/**
+ * Single source of truth for all resume data.
+ *
+ * • Fetches `assets/resume.json` once at runtime via HttpClient.
+ * • Cached with `shareReplay(1)` — every subscriber gets the same
+ *   response without a second HTTP request.
+ * • To update the portfolio, edit `resume.json` and redeploy the
+ *   static asset — zero code changes required.
+ */
 @Injectable({ providedIn: 'root' })
 export class ResumeService {
-  private resume$: Observable<Resume>;
+  private readonly resume$: Observable<ResumeData>;
 
   constructor(private http: HttpClient) {
-    // Fetched at runtime — swap the JSON on the server to update without rebuilding
     this.resume$ = this.http
-      .get<Resume>('assets/resume.json')
+      .get<ResumeData>('assets/resume.json')
       .pipe(shareReplay(1));
   }
 
-  getResume(): Observable<Resume> {
+  /* ── full document ───────────────────────────────────────── */
+
+  getResume(): Observable<ResumeData> {
     return this.resume$;
   }
 
-  getProfile(): Observable<Profile> {
-    return this.resume$.pipe(map((r) => r.profile));
+  /* ── basics ──────────────────────────────────────────────── */
+
+  getBasics(): Observable<Basics> {
+    return this.resume$.pipe(map((r) => r.basics));
   }
 
-  getSkills(): Observable<Skill[]> {
+  getProfiles(): Observable<SocialProfile[]> {
+    return this.resume$.pipe(map((r) => r.basics.profiles));
+  }
+
+  /* ── skills ──────────────────────────────────────────────── */
+
+  getSkills(): Observable<SkillGroup[]> {
     return this.resume$.pipe(map((r) => r.skills));
   }
 
-  getProjects(): Observable<Project[]> {
+  /** Find a single skill category by name, e.g. "Cloud & AWS" */
+  getSkillGroupByName(name: string): Observable<SkillGroup | undefined> {
+    return this.resume$.pipe(
+      map((r) => r.skills.find((s) => s.name === name))
+    );
+  }
+
+  /* ── projects ────────────────────────────────────────────── */
+
+  getProjects(): Observable<ProjectEntry[]> {
     return this.resume$.pipe(map((r) => r.projects));
   }
 
-  getExperience(): Observable<Experience[]> {
-    return this.resume$.pipe(map((r) => r.experience));
+  getFeaturedProjects(): Observable<ProjectEntry[]> {
+    return this.resume$.pipe(
+      map((r) => r.projects.filter((p) => p['x-featured']))
+    );
   }
 
-  getEducation(): Observable<Education[]> {
+  /* ── work ────────────────────────────────────────────────── */
+
+  getWork(): Observable<WorkEntry[]> {
+    return this.resume$.pipe(map((r) => r.work));
+  }
+
+  /* ── education ───────────────────────────────────────────── */
+
+  getEducation(): Observable<EducationEntry[]> {
     return this.resume$.pipe(map((r) => r.education));
   }
 
-  getContact(): Observable<ContactInfo> {
-    return this.resume$.pipe(map((r) => r.contact));
-  }
+  /* ── certificates ────────────────────────────────────────── */
 
-  getSkillsByCategory(category: string): Observable<Skill[]> {
-    return this.resume$.pipe(
-      map((r) => r.skills.filter((s) => s.category === category))
-    );
-  }
-
-  getFeaturedProjects(): Observable<Project[]> {
-    return this.resume$.pipe(
-      map((r) => r.projects.filter((p) => p.featured))
-    );
+  getCertificates(): Observable<CertificateEntry[]> {
+    return this.resume$.pipe(map((r) => r.certificates ?? []));
   }
 }
