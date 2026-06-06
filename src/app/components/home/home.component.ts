@@ -1,92 +1,103 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as THREE from 'three';
 import { ResumeService } from '../../services/resume.service';
-import { Basics } from '../../models/resume.model';
+import {
+  Basics,
+  SkillGroup,
+  ProjectEntry,
+  WorkEntry,
+  EducationEntry,
+  CertificateEntry,
+  SocialProfile,
+} from '../../models/resume.model';
+import { ThreeSceneComponent, ThreeSceneReadyEvent } from '../three-scene';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ThreeSceneComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('threeCanvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
-
+export class HomeComponent implements OnInit, OnDestroy {
+  /* ── Resume data ──────────────────────────────────────────────── */
   basics: Basics | null = null;
+  skills: SkillGroup[] = [];
+  projects: ProjectEntry[] = [];
+  featuredProjects: ProjectEntry[] = [];
+  work: WorkEntry[] = [];
+  education: EducationEntry[] = [];
+  certificates: CertificateEntry[] = [];
+  profiles: SocialProfile[] = [];
 
-  private renderer!: THREE.WebGLRenderer;
-  private scene!: THREE.Scene;
-  private camera!: THREE.PerspectiveCamera;
+  /* ── Three.js particles ───────────────────────────────────────── */
   private particles!: THREE.Points;
-  private animationId!: number;
-  private clock = new THREE.Clock();
+  private animationId = 0;
+  private startTime = 0;
 
-  constructor(private resumeService: ResumeService) {}
+  constructor(
+    private resumeService: ResumeService,
+    private ngZone: NgZone,
+  ) {}
+
+  /* ── Lifecycle ────────────────────────────────────────────────── */
 
   ngOnInit(): void {
-    this.resumeService.getBasics().subscribe((basics) => {
-      this.basics = basics;
+    this.resumeService.getResume().subscribe((resume) => {
+      this.basics = resume.basics;
+      this.skills = resume.skills ?? [];
+      this.projects = resume.projects ?? [];
+      this.featuredProjects = this.projects.filter((p) => p['x-featured']);
+      this.work = resume.work ?? [];
+      this.education = resume.education ?? [];
+      this.certificates = resume.certificates ?? [];
+      this.profiles = resume.basics.profiles ?? [];
     });
   }
 
-  ngAfterViewInit(): void {
-    this.initThreeScene();
-    this.animate();
-    window.addEventListener('resize', this.onResize);
-  }
-
   ngOnDestroy(): void {
-    cancelAnimationFrame(this.animationId);
-    window.removeEventListener('resize', this.onResize);
-    this.renderer?.dispose();
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+    }
   }
 
-  private initThreeScene(): void {
-    const canvas = this.canvasRef.nativeElement;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+  /* ── Three.js scene hook ──────────────────────────────────────── */
 
-    // Renderer
-    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    // Scene
-    this.scene = new THREE.Scene();
-
-    // Camera
-    this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    this.camera.position.z = 5;
-
-    // Particles
-    this.createParticles();
-
-    // Cyberpunk lighting
-    const ambientLight = new THREE.AmbientLight(0x050510, 0.3);
-    this.scene.add(ambientLight);
-
-    const cyanLight = new THREE.PointLight(0x00f5ff, 1.2, 100);
-    cyanLight.position.set(5, 5, 5);
-    this.scene.add(cyanLight);
-
+  onSceneReady({ scene }: ThreeSceneReadyEvent): void {
     const magentaLight = new THREE.PointLight(0xff00aa, 0.9, 100);
     magentaLight.position.set(-5, -3, 3);
-    this.scene.add(magentaLight);
+    scene.add(magentaLight);
+
+    this.createParticles(scene);
+    this.startTime = performance.now();
+    this.ngZone.runOutsideAngular(() => this.animateParticles());
   }
 
-  private createParticles(): void {
+  /* ── Helpers ──────────────────────────────────────────────────── */
+
+  /** Format YYYY-MM to a readable string, handling "Present" for missing end dates. */
+  formatDate(dateStr?: string): string {
+    if (!dateStr) return 'Present';
+    const [year, month] = dateStr.split('-');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return month ? `${months[+month - 1]} ${year}` : year;
+  }
+
+  /* ── Particles ────────────────────────────────────────────────── */
+
+  private createParticles(scene: THREE.Scene): void {
     const particleCount = 2000;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
     const palette = [
-      new THREE.Color(0x00f5ff), // neon cyan
-      new THREE.Color(0xff00aa), // neon magenta
-      new THREE.Color(0xbf00ff), // neon purple
-      new THREE.Color(0x00f5ff), // cyan (weighted)
+      new THREE.Color(0x00f5ff),
+      new THREE.Color(0xff00aa),
+      new THREE.Color(0xbf00ff),
+      new THREE.Color(0x00f5ff),
     ];
 
     for (let i = 0; i < particleCount; i++) {
@@ -113,27 +124,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this.particles = new THREE.Points(geometry, material);
-    this.scene.add(this.particles);
+    scene.add(this.particles);
   }
 
-  private animate = (): void => {
-    this.animationId = requestAnimationFrame(this.animate);
-    const elapsed = this.clock.getElapsedTime();
-
-    // Rotate particles slowly
+  private animateParticles = (): void => {
+    this.animationId = requestAnimationFrame(this.animateParticles);
+    const elapsed = (performance.now() - this.startTime) / 1000;
     if (this.particles) {
       this.particles.rotation.y = elapsed * 0.05;
       this.particles.rotation.x = elapsed * 0.02;
     }
-
-    this.renderer.render(this.scene, this.camera);
-  };
-
-  private onResize = (): void => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
   };
 }

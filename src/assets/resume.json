@@ -3,7 +3,7 @@
   "basics": {
     "name": "Divesh Kumawat",
     "label": "Cloud & Full-Stack Developer",
-    "image": "assets/images/avatar.png",
+    "image": "assets/images/Divesh.png",
     "email": "kumavatdivesh671@gmail.com",
     "phone": "+91-7621997058",
     "url": "",
@@ -159,7 +159,9 @@
         "IAM"
       ],
       "url": "",
-      "roles": ["Full-Stack Developer"],
+      "roles": [
+        "Full-Stack Developer"
+      ],
       "type": "application",
       "x-featured": true
     },
@@ -179,7 +181,9 @@
         "PDF.js"
       ],
       "url": "https://github.com/D1v3shh/ai-studybuddy",
-      "roles": ["Full-Stack Developer"],
+      "roles": [
+        "Full-Stack Developer"
+      ],
       "type": "application",
       "x-featured": true
     },
@@ -200,7 +204,9 @@
         "GitHub Workflows"
       ],
       "url": "",
-      "roles": ["Open Source Contributor"],
+      "roles": [
+        "Open Source Contributor"
+      ],
       "type": "application",
       "x-featured": true
     },
@@ -221,7 +227,9 @@
         "Encryption"
       ],
       "url": "",
-      "roles": ["Backend Developer"],
+      "roles": [
+        "Backend Developer"
+      ],
       "type": "application",
       "x-featured": false
     },
@@ -241,7 +249,9 @@
         "Education"
       ],
       "url": "",
-      "roles": ["Developer"],
+      "roles": [
+        "Developer"
+      ],
       "type": "application",
       "x-featured": false
     }
