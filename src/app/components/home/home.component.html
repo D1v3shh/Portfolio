@@ -3,6 +3,7 @@
      ════════════════════════════════════════════════════════════ -->
 <section class="hero" id="hero">
   <app-three-scene (sceneReady)="onSceneReady($event)"></app-three-scene>
+  <app-hud-overlay></app-hud-overlay>
 
   <div class="hero-inner" *ngIf="basics">
     <!-- Left: text content -->
@@ -132,29 +133,7 @@
 <!-- ════════════════════════════════════════════════════════════
      EXPERIENCE
      ════════════════════════════════════════════════════════════ -->
-<section class="section experience" id="experience" *ngIf="work.length">
-  <div class="container">
-    <h2 class="section-title"><span class="title-accent">//</span> Experience</h2>
-    <div class="timeline">
-      <div *ngFor="let job of work" class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-card glass-panel">
-          <div class="timeline-header">
-            <h3>{{ job.position }}</h3>
-            <span class="timeline-company">{{ job.name }}</span>
-          </div>
-          <span class="timeline-date">
-            {{ formatDate(job.startDate) }} — {{ formatDate(job.endDate) }}
-          </span>
-          <p class="timeline-summary">{{ job.summary }}</p>
-          <ul class="timeline-highlights" *ngIf="job.highlights?.length">
-            <li *ngFor="let h of job.highlights">{{ h }}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<app-experience></app-experience>
 
 <!-- ════════════════════════════════════════════════════════════
      EDUCATION

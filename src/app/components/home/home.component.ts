@@ -12,11 +12,13 @@ import {
   SocialProfile,
 } from '../../models/resume.model';
 import { ThreeSceneComponent, ThreeSceneReadyEvent } from '../three-scene';
+import { HudOverlayComponent } from '../hud-overlay';
+import { ExperienceComponent } from '../experience';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ThreeSceneComponent],
+  imports: [CommonModule, ThreeSceneComponent, HudOverlayComponent, ExperienceComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

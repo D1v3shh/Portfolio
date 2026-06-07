@@ -1,0 +1,74 @@
+<!-- ════════════════════════════════════════════════════════════
+     EXPERIENCE — Glitch-styled vertical timeline
+     ════════════════════════════════════════════════════════════ -->
+<section class="exp-section" id="experience" *ngIf="work.length">
+  <div class="exp-container">
+    <h2 class="exp-section-title">
+      <span class="exp-title-accent">//</span> Experience
+    </h2>
+
+    <!-- Timeline wrapper — triggers stagger animation on enter -->
+    <div class="exp-timeline" [@timelineStagger]>
+      <!-- Glitch line (decorative) -->
+      <div class="exp-timeline-line" aria-hidden="true">
+        <div class="exp-line-glitch"></div>
+      </div>
+
+      <!-- Timeline items -->
+      <div
+        *ngFor="let job of work; let i = index"
+        class="exp-timeline-item"
+        [id]="'exp-item-' + i"
+      >
+        <!-- Marker node -->
+        <div class="exp-marker">
+          <div class="exp-marker-core"></div>
+          <div class="exp-marker-ring"></div>
+          <div class="exp-marker-pulse"></div>
+        </div>
+
+        <!-- Card -->
+        <div class="exp-card">
+          <!-- Glitch layers (for hover effect) -->
+          <div class="exp-card-glitch exp-card-glitch--cyan" aria-hidden="true"></div>
+          <div class="exp-card-glitch exp-card-glitch--magenta" aria-hidden="true"></div>
+
+          <!-- Content -->
+          <div class="exp-card-content">
+            <div class="exp-card-header">
+              <div class="exp-card-titles">
+                <h3 class="exp-role">{{ job.position }}</h3>
+                <span class="exp-company">
+                <span class="exp-at">&#64;</span> {{ job.name }}
+                </span>
+              </div>
+              <div class="exp-date-badge">
+                <span class="exp-date">
+                  {{ formatDate(job.startDate) }} — {{ formatDate(job.endDate) }}
+                </span>
+              </div>
+            </div>
+
+            <p class="exp-summary" *ngIf="job.summary">{{ job.summary }}</p>
+
+            <ul class="exp-highlights" *ngIf="job.highlights?.length">
+              <li *ngFor="let h of job.highlights">
+                <span class="exp-bullet">▹</span>
+                <span>{{ h }}</span>
+              </li>
+            </ul>
+
+            <!-- Location badge -->
+            <div class="exp-location" *ngIf="job.location">
+              <span class="exp-location-icon">◈</span>
+              <span>{{ job.location }}</span>
+            </div>
+          </div>
+
+          <!-- Card scanline overlay -->
+          <div class="exp-card-scanlines" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
