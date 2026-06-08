@@ -1,0 +1,279 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Divesh Kumawat",
+    "label": "Cloud & Full-Stack Developer",
+    "image": "assets/images/Divesh.png",
+    "email": "kumavatdivesh671@gmail.com",
+    "phone": "+91-7621997058",
+    "url": "",
+    "summary": "Cloud and Full-Stack Developer skilled in AWS, serverless architectures, and modern web technologies. Hands-on experience building and deploying scalable AI-powered applications with a strong focus on performance, accessibility, and production-ready systems.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Vadodara",
+      "countryCode": "IN",
+      "region": "Gujarat"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "D1v3shh",
+        "url": "https://github.com/D1v3shh"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "divesh",
+        "url": "https://linkedin.com/in/divesh"
+      }
+    ],
+    "x-tagline": "Building scalable, AI-powered, cloud-native applications",
+    "x-avatarModel": "assets/avatar/avatar.glb",
+    "x-resumePdf": "assets/resume.pdf"
+  },
+  "work": [
+    {
+      "name": "EPL Ecosystem",
+      "location": "Remote",
+      "description": "Open-source programming language ecosystem",
+      "position": "Open Source Contributor",
+      "url": "",
+      "startDate": "2024-01",
+      "summary": "Developed and integrated the official EPL cloud package with AWS support for the EPL ecosystem.",
+      "highlights": [
+        "Implemented cloud utilities for AWS S3, Lambda, and SQS integrations",
+        "Designed a simplified EPL facade layer with modular boto3 support using eplang[cloud]",
+        "Created 25 unit tests with mocked AWS services achieving high test coverage",
+        "Collaborated using GitHub workflows: feature branching, pull requests, and code reviews"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Parul University",
+      "url": "",
+      "area": "Computer Science Engineering",
+      "studyType": "B.Tech",
+      "startDate": "2023-07",
+      "score": "CGPA: 7.40",
+      "courses": []
+    },
+    {
+      "institution": "Sharadayatan School",
+      "url": "",
+      "area": "Science",
+      "studyType": "12th Standard",
+      "startDate": "2022-07",
+      "endDate": "2023-04",
+      "score": "",
+      "courses": []
+    },
+    {
+      "institution": "Sharadayatan School",
+      "url": "",
+      "area": "General",
+      "studyType": "10th Standard",
+      "startDate": "2020-03",
+      "endDate": "2021-04",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "Cloud & AWS",
+      "level": "Advanced",
+      "keywords": [
+        "AWS EC2",
+        "S3",
+        "Lambda",
+        "API Gateway",
+        "DynamoDB",
+        "RDS",
+        "Serverless Architecture",
+        "AWS Bedrock"
+      ]
+    },
+    {
+      "name": "Frontend",
+      "level": "Advanced",
+      "keywords": [
+        "Angular",
+        "TypeScript",
+        "HTML5",
+        "CSS3",
+        "Three.js"
+      ]
+    },
+    {
+      "name": "Backend",
+      "level": "Advanced",
+      "keywords": [
+        "Node.js",
+        "REST APIs",
+        "Express.js"
+      ]
+    },
+    {
+      "name": "Languages",
+      "level": "Advanced",
+      "keywords": [
+        "JavaScript",
+        "TypeScript",
+        "C++",
+        "Java",
+        "C",
+        "Python",
+        "SQL"
+      ]
+    },
+    {
+      "name": "DevOps & Tools",
+      "level": "Intermediate",
+      "keywords": [
+        "Docker",
+        "Vercel",
+        "CodePipeline",
+        "GitHub Actions",
+        "Git",
+        "Linux / CLI",
+        "Postman"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Fun-Facts Generator",
+      "description": "Fully serverless AI-powered application using AWS Lambda, API Gateway, DynamoDB, Bedrock, and Amplify to generate fun facts. Built scalable backend APIs with IAM-based access control and hosted the frontend on AWS Amplify for a cloud-native experience.",
+      "highlights": [
+        "End-to-end serverless architecture on AWS",
+        "AI-driven content generation via AWS Bedrock",
+        "IAM-based access control and DynamoDB persistence"
+      ],
+      "keywords": [
+        "AWS Lambda",
+        "API Gateway",
+        "DynamoDB",
+        "AWS Bedrock",
+        "AWS Amplify",
+        "IAM"
+      ],
+      "url": "",
+      "roles": [
+        "Full-Stack Developer"
+      ],
+      "type": "application",
+      "x-featured": true
+    },
+    {
+      "name": "AI-StudyBuddy",
+      "description": "Full-stack AI-powered learning platform using Angular, Node.js, and Google Gemini API for generating personalized study materials from PDF documents. Features glassmorphism UI, accessibility modes, text-to-speech, and offline export for flashcards and quizzes.",
+      "highlights": [
+        "Personalized AI study material generation from PDF uploads",
+        "Glassmorphism UI with accessibility and dark mode",
+        "Text-to-speech and offline export for flashcards"
+      ],
+      "keywords": [
+        "Angular",
+        "Node.js",
+        "Google Gemini API",
+        "Vercel",
+        "PDF.js"
+      ],
+      "url": "https://github.com/D1v3shh/ai-studybuddy",
+      "roles": [
+        "Full-Stack Developer"
+      ],
+      "type": "application",
+      "x-featured": true
+    },
+    {
+      "name": "EPL Cloud Package",
+      "description": "Open-source contribution to the EPL ecosystem — developed and integrated the official EPL cloud package with AWS support including S3, Lambda, and SQS integrations, a simplified facade layer, and modular boto3 support via eplang[cloud].",
+      "highlights": [
+        "Official cloud package for the EPL programming language",
+        "AWS S3, Lambda, and SQS integration modules",
+        "25 unit tests with mocked AWS services"
+      ],
+      "keywords": [
+        "Python",
+        "AWS S3",
+        "AWS Lambda",
+        "AWS SQS",
+        "boto3",
+        "GitHub Workflows"
+      ],
+      "url": "",
+      "roles": [
+        "Open Source Contributor"
+      ],
+      "type": "application",
+      "x-featured": true
+    },
+    {
+      "name": "SecureVault",
+      "description": "Enterprise-grade secure file storage backend built with NestJS and Clean Architecture. Features encrypted file sharing with configurable permissions, time-limited access, device certificate restrictions, and comprehensive audit logging.",
+      "highlights": [
+        "Clean Architecture with NestJS and TypeScript",
+        "Encrypted file sharing with granular permission controls",
+        "90%+ test coverage with comprehensive integration tests"
+      ],
+      "keywords": [
+        "NestJS",
+        "TypeScript",
+        "PostgreSQL",
+        "Clean Architecture",
+        "JWT",
+        "Encryption"
+      ],
+      "url": "",
+      "roles": [
+        "Backend Developer"
+      ],
+      "type": "application",
+      "x-featured": false
+    },
+    {
+      "name": "DevOps Helper",
+      "description": "AI-driven educational tool that standardizes the explanation of complex DevOps topics through a structured 4-layer learning framework. Helps users learn cloud and DevOps concepts interactively.",
+      "highlights": [
+        "Structured 4-layer learning framework for DevOps concepts",
+        "AI-powered explanations and interactive learning",
+        "Covers AWS, Docker, CI/CD, and infrastructure topics"
+      ],
+      "keywords": [
+        "AI",
+        "DevOps",
+        "AWS",
+        "Docker",
+        "Education"
+      ],
+      "url": "",
+      "roles": [
+        "Developer"
+      ],
+      "type": "application",
+      "x-featured": false
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Academy Cloud Foundations",
+      "date": "2024",
+      "issuer": "Amazon Web Services",
+      "url": ""
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner (CLF-C02)",
+      "date": "2024",
+      "issuer": "Amazon Web Services",
+      "url": ""
+    }
+  ],
+  "meta": {
+    "canonical": "",
+    "version": "v1.0.0",
+    "lastModified": "2026-06-05",
+    "x-theme": "cyberpunk"
+  }
+}
