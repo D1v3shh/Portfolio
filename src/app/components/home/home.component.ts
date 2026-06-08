@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
 import * as THREE from 'three';
 import { ResumeService } from '../../services/resume.service';
 import {
@@ -33,14 +35,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   certificates: CertificateEntry[] = [];
   profiles: SocialProfile[] = [];
 
+  /* ── Responsive state ─────────────────────────────────────────── */
+  isMobile = false;
+  private breakpointSub!: Subscription;
+
   /* ── Three.js particles ───────────────────────────────────────── */
   private particles!: THREE.Points;
   private animationId = 0;
   private startTime = 0;
+  private orbitRunning = false;
 
   constructor(
     private resumeService: ResumeService,
     private ngZone: NgZone,
+    private breakpointObserver: BreakpointObserver,
   ) {}
 
   /* ── Lifecycle ────────────────────────────────────────────────── */
@@ -56,12 +64,26 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.certificates = resume.certificates ?? [];
       this.profiles = resume.basics.profiles ?? [];
     });
+
+    /* ── BreakpointObserver: detect mobile (< 768px) ────────────── */
+    this.breakpointSub = this.breakpointObserver
+      .observe(['(max-width: 767px)'])
+      .subscribe((result) => {
+        this.isMobile = result.matches;
+
+        if (this.isMobile) {
+          this.stopOrbitAnimation();
+        } else if (this.particles && !this.orbitRunning) {
+          this.ngZone.runOutsideAngular(() => this.animateParticles());
+        }
+      });
   }
 
   ngOnDestroy(): void {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
+    this.breakpointSub?.unsubscribe();
   }
 
   /* ── Three.js scene hook ──────────────────────────────────────── */
@@ -73,7 +95,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.createParticles(scene);
     this.startTime = performance.now();
-    this.ngZone.runOutsideAngular(() => this.animateParticles());
+
+    /* Only start orbit loop on desktop */
+    if (!this.isMobile) {
+      this.ngZone.runOutsideAngular(() => this.animateParticles());
+    }
   }
 
   /* ── Helpers ──────────────────────────────────────────────────── */
@@ -90,7 +116,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   /* ── Particles ────────────────────────────────────────────────── */
 
   private createParticles(scene: THREE.Scene): void {
-    const particleCount = 2000;
+    /* Fewer particles on mobile for GPU performance */
+    const particleCount = this.isMobile ? 800 : 2000;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -130,6 +157,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private animateParticles = (): void => {
+    this.orbitRunning = true;
     this.animationId = requestAnimationFrame(this.animateParticles);
     const elapsed = (performance.now() - this.startTime) / 1000;
     if (this.particles) {
@@ -137,4 +165,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.particles.rotation.x = elapsed * 0.02;
     }
   };
+
+  private stopOrbitAnimation(): void {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = 0;
+    }
+    this.orbitRunning = false;
+  }
 }
+

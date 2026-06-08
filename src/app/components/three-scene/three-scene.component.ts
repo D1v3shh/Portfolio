@@ -5,6 +5,7 @@ import {
   AfterViewInit,
   OnDestroy,
   Output,
+  Input,
   EventEmitter,
   NgZone,
 } from '@angular/core';
@@ -61,6 +62,12 @@ export interface ThreeSceneReadyEvent {
         pointer-events: none;
       }
 
+      :host.mobile-mode {
+        position: relative;
+        width: 100%;
+        height: 40vh;
+      }
+
       canvas {
         display: block;
         width: 100%;
@@ -68,11 +75,18 @@ export interface ThreeSceneReadyEvent {
       }
     `,
   ],
+  host: {
+    '[class.mobile-mode]': 'mobileMode',
+  },
 })
 export class ThreeSceneComponent implements AfterViewInit, OnDestroy {
   // ── Canvas reference ─────────────────────────────────────────────────
   @ViewChild('rendererCanvas', { static: true })
   private canvasRef!: ElementRef<HTMLCanvasElement>;
+
+  // ── Inputs ──────────────────────────────────────────────────────────
+  /** When true, canvas is 40vh static instead of 100vh fixed. */
+  @Input() mobileMode = false;
 
   // ── Output ───────────────────────────────────────────────────────────
   /** Emitted once after the Three.js scene graph and renderer are ready. */

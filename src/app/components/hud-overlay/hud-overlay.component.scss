@@ -452,15 +452,31 @@ $hud-bevel: 14px; // size of the angled corner cut
 }
 
 /* ══════════════════════════════════════════════════════════════
-   RESPONSIVE — Collapse HUD on small screens
+   RESPONSIVE — Stack HUD vertically on mobile
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  :host {
+    position: absolute;
+    inset: 0;
+  }
+
   .hud-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 12px;
+    gap: 8px;
+  }
+
+  .hud-panel {
+    align-self: stretch !important;
+    justify-self: stretch !important;
   }
 
   .hud-panel-inner {
     padding: 10px 14px;
+    /* Remove angled clip-paths — they clip content in stacked layout */
+    clip-path: none !important;
   }
 
   .hud-name {
@@ -475,9 +491,21 @@ $hud-bevel: 14px; // size of the angled corner cut
     display: none;
   }
 
+  .hud-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+
   .hud-nav-link {
     font-size: 0.6rem;
     padding: 2px 2px;
+  }
+
+  .hud-social-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .hud-social-user {
@@ -485,21 +513,30 @@ $hud-bevel: 14px; // size of the angled corner cut
   }
 
   .hud-status-terminal {
-    min-width: 150px;
+    min-width: unset;
+    min-height: unset;
   }
 
   .hud-status-line {
     font-size: 0.55rem;
   }
+
+  .hud-crosshair {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
-  .hud-top-right,
   .hud-bottom-right {
     display: none;
   }
 
-  .hud-overlay {
-    grid-template-columns: auto 1fr;
+  .hud-nav {
+    gap: 2px 8px;
+  }
+
+  .hud-nav-link {
+    font-size: 0.55rem;
   }
 }
+

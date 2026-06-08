@@ -239,3 +239,15 @@ body::after {
   color: #fff;
   text-shadow: var(--glow-text-cyan);
 }
+
+/* ══════════════════════════════════════════════
+   ROUTE TRANSITION — CRT POWER-ON / STATIC NOISE
+   ══════════════════════════════════════════════ */
+
+/* Ensure routed components fill the viewport during transition */
+router-outlet + * {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+}
+

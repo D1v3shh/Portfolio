@@ -2,7 +2,7 @@
      HERO
      ════════════════════════════════════════════════════════════ -->
 <section class="hero" id="hero">
-  <app-three-scene (sceneReady)="onSceneReady($event)"></app-three-scene>
+  <app-three-scene [mobileMode]="isMobile" (sceneReady)="onSceneReady($event)"></app-three-scene>
   <app-hud-overlay></app-hud-overlay>
 
   <div class="hero-inner" *ngIf="basics">
