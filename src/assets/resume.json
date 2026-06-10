@@ -23,8 +23,8 @@
       },
       {
         "network": "LinkedIn",
-        "username": "divesh",
-        "url": "https://linkedin.com/in/divesh"
+        "username": "Divesh Kumawat",
+        "url": "https://www.linkedin.com/in/divesh-kumawat-0874662b9/"
       }
     ],
     "x-tagline": "Building scalable, AI-powered, cloud-native applications",
@@ -143,6 +143,29 @@
   ],
   "projects": [
     {
+      "name": "SecureVault",
+      "description": "Enterprise-grade secure file storage backend built with NestJS and Clean Architecture. Features encrypted file sharing with configurable permissions, time-limited access, device certificate restrictions, and comprehensive audit logging.",
+      "highlights": [
+        "Clean Architecture with NestJS and TypeScript",
+        "Encrypted file sharing with granular permission controls",
+        "90%+ test coverage with comprehensive integration tests"
+      ],
+      "keywords": [
+        "NestJS",
+        "TypeScript",
+        "PostgreSQL",
+        "Clean Architecture",
+        "JWT",
+        "Encryption"
+      ],
+      "url": "",
+      "roles": [
+        "Backend Developer"
+      ],
+      "type": "application",
+      "x-featured": true
+    },
+    {
       "name": "Fun-Facts Generator",
       "description": "Fully serverless AI-powered application using AWS Lambda, API Gateway, DynamoDB, Bedrock, and Amplify to generate fun facts. Built scalable backend APIs with IAM-based access control and hosted the frontend on AWS Amplify for a cloud-native experience.",
       "highlights": [
@@ -209,29 +232,6 @@
       ],
       "type": "application",
       "x-featured": true
-    },
-    {
-      "name": "SecureVault",
-      "description": "Enterprise-grade secure file storage backend built with NestJS and Clean Architecture. Features encrypted file sharing with configurable permissions, time-limited access, device certificate restrictions, and comprehensive audit logging.",
-      "highlights": [
-        "Clean Architecture with NestJS and TypeScript",
-        "Encrypted file sharing with granular permission controls",
-        "90%+ test coverage with comprehensive integration tests"
-      ],
-      "keywords": [
-        "NestJS",
-        "TypeScript",
-        "PostgreSQL",
-        "Clean Architecture",
-        "JWT",
-        "Encryption"
-      ],
-      "url": "",
-      "roles": [
-        "Backend Developer"
-      ],
-      "type": "application",
-      "x-featured": false
     },
     {
       "name": "DevOps Helper",
