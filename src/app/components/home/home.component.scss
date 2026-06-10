@@ -630,6 +630,36 @@
   }
 }
 
+.cert-card--link {
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  color: inherit;
+
+  &:hover {
+    border-color: rgba(0, 245, 255, 0.5);
+    box-shadow:
+      0 0 12px rgba(0, 245, 255, 0.4),
+      0 0 30px rgba(0, 245, 255, 0.1);
+
+    .cert-link-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.cert-link-hint {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--neon-cyan);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 .cert-icon {
   font-size: 2rem;
   margin-bottom: 0.75rem;

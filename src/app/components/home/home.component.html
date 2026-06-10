@@ -166,12 +166,27 @@
   <div class="container">
     <h2 class="section-title"><span class="title-accent">//</span> Certifications</h2>
     <div class="cert-grid">
-      <div *ngFor="let cert of certificates" class="cert-card glass-panel">
-        <div class="cert-icon">🏆</div>
-        <h3 class="cert-name">{{ cert.name }}</h3>
-        <span class="cert-issuer">{{ cert.issuer }}</span>
-        <span class="cert-date" *ngIf="cert.date">{{ cert.date }}</span>
-      </div>
+      <ng-container *ngFor="let cert of certificates">
+        <!-- Clickable card (has URL) -->
+        <a *ngIf="cert.url; else noUrlCard"
+           [href]="cert.url" target="_blank" rel="noopener"
+           class="cert-card cert-card--link glass-panel">
+          <div class="cert-icon">🏆</div>
+          <h3 class="cert-name">{{ cert.name }}</h3>
+          <span class="cert-issuer">{{ cert.issuer }}</span>
+          <span class="cert-date" *ngIf="cert.date">{{ cert.date }}</span>
+          <span class="cert-link-hint">View credential →</span>
+        </a>
+        <!-- Non-clickable card (no URL) -->
+        <ng-template #noUrlCard>
+          <div class="cert-card glass-panel">
+            <div class="cert-icon">🏆</div>
+            <h3 class="cert-name">{{ cert.name }}</h3>
+            <span class="cert-issuer">{{ cert.issuer }}</span>
+            <span class="cert-date" *ngIf="cert.date">{{ cert.date }}</span>
+          </div>
+        </ng-template>
+      </ng-container>
     </div>
   </div>
 </section>
